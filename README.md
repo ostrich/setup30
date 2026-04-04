@@ -101,6 +101,5 @@ out/
 - Verified samples so far include direct PE Netscape installers `n32e201.exe`, `n32e202.exe`, `n32e30p.exe`, and `n32d304.exe`; plus raw non-Netscape `DATA.Z` / `_SETUP.LIB` archives and numbered multipart `DATA.1` / `DATA.2` sets from Toshiba and Ricoh utility packages.
 - The self-extracting installer path assumes a PE installer with standard resource tables and `FILE` resources.
 - Older pre-`Setup30` InstallShield launchers with strings like `InstallSHIELD Launcher (C) The Stirling Group, 1990, 1991` and payloads such as `INSTALL.EX$` / `INSTALL.INS` are not currently supported.
-- It does not claim support for every InstallShield generation.
-- It does not claim support for later CAB-based InstallShield installers, unrelated 16-bit installers, or outer wrapper formats such as ZIP/WinZip SFX or LHa SFX.
+- No support for later CAB-based InstallShield installers, unrelated 16-bit installers, or outer wrapper formats such as ZIP/WinZip SFX or LHa SFX.
 - Directory records in these archives are not fully reconstructed yet; extracted files are currently grouped by source archive.
