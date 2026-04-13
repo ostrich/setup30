@@ -14,7 +14,7 @@ Modern tools like `7z` and `unshield` usually do not handle this format directly
 `setup30.py`:
 
 - accepts old `.Z` / `_SETUP.LIB` archives, numbered multipart sets such as `DATA.1` / `DATA.2`, or a compatible self-extracting installer `.exe`
-- extracts installer `FILE` resources itself when given a self-extracting installer
+- extracts installer `FILE` resources when given a self-extracting installer
 - parses the old InstallShield footer
 - finds member names, offsets, and compressed sizes
 - reconstructs disk-spanning TTCOMP members across numbered archive parts
