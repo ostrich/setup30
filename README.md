@@ -1,7 +1,7 @@
 # setup30
 
 Extract old InstallShield 3-style `.Z`, `_SETUP.LIB`, and numbered multipart archives on modern systems.
-Extract intermediate `FILE` resource from classic self-extracting InstallShield installer `.exe`s.
+Extract intermediate `FILE` resource from classic self-extracting InstallShield installer `.exe` files.
 
 These files are not plain Unix `.Z` archives. They contain:
 
