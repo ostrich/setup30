@@ -622,15 +622,21 @@ def main() -> None:
     }
     processed_multipart: set[tuple[str, str]] = set()
 
-    for input_path in args.archives:
-        input_path = input_path.resolve()
-        extract_input(
-            input_path=input_path,
-            output_root=output_dir,
-            keep_ttcomp=args.keep_ttcomp,
-            unzip_members=not args.no_unzip,
-            summary=summary,
-            processed_multipart=processed_multipart,
+    try:
+        for input_path in args.archives:
+            input_path = input_path.resolve()
+            extract_input(
+                input_path=input_path,
+                output_root=output_dir,
+                keep_ttcomp=args.keep_ttcomp,
+                unzip_members=not args.no_unzip,
+                summary=summary,
+                processed_multipart=processed_multipart,
+            )
+    except ValueError as exc:
+        parser.exit(
+            1,
+            f"error: {exc}\nSupported inputs are InstallShield 3-era .Z/_SETUP.LIB archives, multipart .001/.002-style archives, and PE wrappers that expose FILE resources.\n",
         )
 
     manifest_path = output_dir / "manifest.json"
