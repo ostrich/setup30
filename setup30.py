@@ -22,21 +22,78 @@ IMPLODE_BINARY = 0
 IMPLODE_ASCII = 1
 IMPLODE_DICT_SIZES = {4: 1024, 5: 2048, 6: 4096}
 
-CH_CODE = [1168, 4064, 2016, 3040, 992, 3552, 1504, 2528, 480, 184, 98, 3808, 1760, 34, 2784, 736, 3296, 1248, 2272, 224, 3936, 1888, 2912, 864, 3424, 1376, 4672, 2400, 352, 3680, 1632, 2656, 15, 592, 56, 608, 80, 3168, 912, 216, 66, 2, 88, 432, 124, 41, 60, 152, 92, 9, 28, 108, 44, 76, 24, 12, 116, 232, 104, 1120, 144, 52, 176, 1808, 2144, 49, 84, 17, 33, 23, 20, 168, 40, 1, 784, 304, 62, 100, 30, 46, 36, 1296, 14, 54, 22, 68, 48, 200, 464, 208, 272, 72, 1552, 336, 96, 136, 4000, 7, 38, 6, 58, 27, 26, 42, 10, 11, 528, 4, 19, 50, 3, 29, 18, 400, 13, 21, 5, 25, 8, 120, 240, 112, 656, 1040, 16, 1952, 2976, 928, 576, 7232, 3136, 5184, 1088, 6208, 2112, 4160, 64, 8064, 3968, 6016, 1920, 7040, 2944, 4992, 896, 7552, 3456, 5504, 1408, 6528, 2432, 4480, 384, 7808, 3712, 5760, 1664, 6784, 2688, 4736, 640, 7296, 3200, 5248, 1152, 6272, 2176, 4224, 128, 7936, 3840, 5888, 1792, 6912, 2816, 4864, 3488, 1440, 2464, 416, 3744, 1696, 2720, 672, 3232, 1184, 2208, 160, 3872, 1824, 2848, 800, 3360, 1312, 2336, 288, 3616, 1568, 2592, 544, 3104, 1056, 2080, 32, 4032, 1984, 3008, 960, 3520, 1472, 2496, 448, 3776, 1728, 2752, 704, 3264, 1216, 2240, 192, 3904, 1856, 2880, 832, 768, 3392, 7424, 3328, 5376, 1344, 1280, 6400, 2304, 2368, 4352, 256, 7680, 3584, 320, 5632, 1536, 6656, 3648, 1600, 2624, 2560, 4608, 512, 7168, 3072, 5120, 1024, 6144, 2048, 4096, 0]
-CH_BITS = [11, 12, 12, 12, 12, 12, 12, 12, 12, 8, 7, 12, 12, 7, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 12, 12, 12, 12, 12, 4, 10, 8, 12, 10, 12, 10, 8, 7, 7, 8, 9, 7, 6, 7, 8, 7, 6, 7, 7, 7, 7, 8, 7, 7, 8, 8, 12, 11, 7, 9, 11, 12, 6, 7, 6, 6, 5, 7, 8, 8, 6, 11, 9, 6, 7, 6, 6, 7, 11, 6, 6, 6, 7, 9, 8, 9, 9, 11, 8, 11, 9, 12, 8, 12, 5, 6, 6, 6, 5, 6, 6, 6, 5, 11, 7, 5, 6, 5, 5, 6, 10, 5, 5, 5, 5, 8, 7, 8, 8, 10, 11, 11, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 12, 13, 13, 13, 12, 13, 13, 13, 12, 13, 13, 13, 13, 12, 13, 13, 13, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13]
+CH_CODE = [
+    1168, 4064, 2016, 3040, 992, 3552, 1504, 2528, 480, 184, 98, 3808, 1760,
+    34, 2784, 736, 3296, 1248, 2272, 224, 3936, 1888, 2912, 864, 3424, 1376,
+    4672, 2400, 352, 3680, 1632, 2656, 15, 592, 56, 608, 80, 3168, 912, 216,
+    66, 2, 88, 432, 124, 41, 60, 152, 92, 9, 28, 108, 44, 76, 24, 12, 116,
+    232, 104, 1120, 144, 52, 176, 1808, 2144, 49, 84, 17, 33, 23, 20, 168, 40,
+    1, 784, 304, 62, 100, 30, 46, 36, 1296, 14, 54, 22, 68, 48, 200, 464, 208,
+    272, 72, 1552, 336, 96, 136, 4000, 7, 38, 6, 58, 27, 26, 42, 10, 11, 528,
+    4, 19, 50, 3, 29, 18, 400, 13, 21, 5, 25, 8, 120, 240, 112, 656, 1040, 16,
+    1952, 2976, 928, 576, 7232, 3136, 5184, 1088, 6208, 2112, 4160, 64, 8064,
+    3968, 6016, 1920, 7040, 2944, 4992, 896, 7552, 3456, 5504, 1408, 6528,
+    2432, 4480, 384, 7808, 3712, 5760, 1664, 6784, 2688, 4736, 640, 7296,
+    3200, 5248, 1152, 6272, 2176, 4224, 128, 7936, 3840, 5888, 1792, 6912,
+    2816, 4864, 3488, 1440, 2464, 416, 3744, 1696, 2720, 672, 3232, 1184,
+    2208, 160, 3872, 1824, 2848, 800, 3360, 1312, 2336, 288, 3616, 1568, 2592,
+    544, 3104, 1056, 2080, 32, 4032, 1984, 3008, 960, 3520, 1472, 2496, 448,
+    3776, 1728, 2752, 704, 3264, 1216, 2240, 192, 3904, 1856, 2880, 832, 768,
+    3392, 7424, 3328, 5376, 1344, 1280, 6400, 2304, 2368, 4352, 256, 7680,
+    3584, 320, 5632, 1536, 6656, 3648, 1600, 2624, 2560, 4608, 512, 7168,
+    3072, 5120, 1024, 6144, 2048, 4096, 0,
+]
+CH_BITS = [
+    11, 12, 12, 12, 12, 12, 12, 12, 12, 8, 7, 12, 12, 7, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 13, 12, 12, 12, 12, 12, 4, 10, 8, 12, 10, 12,
+    10, 8, 7, 7, 8, 9, 7, 6, 7, 8, 7, 6, 7, 7, 7, 7, 8, 7, 7, 8, 8, 12, 11, 7,
+    9, 11, 12, 6, 7, 6, 6, 5, 7, 8, 8, 6, 11, 9, 6, 7, 6, 6, 7, 11, 6, 6, 6,
+    7, 9, 8, 9, 9, 11, 8, 11, 9, 12, 8, 12, 5, 6, 6, 6, 5, 6, 6, 6, 5, 11, 7,
+    5, 6, 5, 5, 6, 10, 5, 5, 5, 5, 8, 7, 8, 8, 10, 11, 11, 12, 12, 12, 13, 13,
+    13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+    13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+    13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 13, 12, 13, 13, 13, 12, 13, 13, 13, 12, 13, 13, 13, 13,
+    12, 13, 13, 13, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+]
 LEN_CODE = [5, 3, 1, 6, 10, 2, 12, 20, 4, 24, 8, 48, 16, 32, 64, 0]
 LEN_BITS = [3, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7]
 LEN_BASE = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 16, 24, 40, 72, 136, 264]
 EXLEN_BITS = [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-OFFS_CODE = [3, 13, 5, 25, 9, 17, 1, 62, 30, 46, 14, 54, 22, 38, 6, 58, 26, 42, 10, 50, 18, 34, 66, 2, 124, 60, 92, 28, 108, 44, 76, 12, 116, 52, 84, 20, 100, 36, 68, 4, 120, 56, 88, 24, 104, 40, 72, 8, 240, 112, 176, 48, 208, 80, 144, 16, 224, 96, 160, 32, 192, 64, 128, 0]
-OFFS_BITS = [2, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]
+OFFS_CODE = [
+    3, 13, 5, 25, 9, 17, 1, 62, 30, 46, 14, 54, 22, 38, 6, 58, 26, 42, 10, 50,
+    18, 34, 66, 2, 124, 60, 92, 28, 108, 44, 76, 12, 116, 52, 84, 20, 100, 36,
+    68, 4, 120, 56, 88, 24, 104, 40, 72, 8, 240, 112, 176, 48, 208, 80, 144,
+    16, 224, 96, 160, 32, 192, 64, 128, 0,
+]
+OFFS_BITS = [
+    2, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7,
+    7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8,
+    8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+]
 
 ASCII_LOOKUP: dict[int, dict[int, int]] = {}
 for i, (bits, code) in enumerate(zip(CH_BITS, CH_CODE)):
     ASCII_LOOKUP.setdefault(bits, {})[code] = i
 ASCII_TABLES = [ASCII_LOOKUP.get(bits, {}) for bits in range(max(CH_BITS) + 1)]
-LEN_LOOKUP = [{code: i for i, (n_bits, code) in enumerate(zip(LEN_BITS, LEN_CODE)) if n_bits == bits} for bits in range(max(LEN_BITS) + 1)]
-OFFS_LOOKUP = [{code: i for i, (n_bits, code) in enumerate(zip(OFFS_BITS, OFFS_CODE)) if n_bits == bits} for bits in range(max(OFFS_BITS) + 1)]
+LEN_LOOKUP = [
+    {
+        code: i
+        for i, (n_bits, code) in enumerate(zip(LEN_BITS, LEN_CODE))
+        if n_bits == bits
+    }
+    for bits in range(max(LEN_BITS) + 1)
+]
+OFFS_LOOKUP = [
+    {
+        code: i
+        for i, (n_bits, code) in enumerate(zip(OFFS_BITS, OFFS_CODE))
+        if n_bits == bits
+    }
+    for bits in range(max(OFFS_BITS) + 1)
+]
 
 
 class TTCompError(ValueError):
@@ -117,7 +174,11 @@ def explode_ttcomp(data: bytes, expected_size: int | None = None) -> bytes:
                 bit_buf >>= 2
                 bit_num -= 2
             else:
-                copy_off = dict_ptr - 1 - ((i << dict_code) + truncate_value(bit_buf, dict_code))
+                copy_off = (
+                    dict_ptr
+                    - 1
+                    - ((i << dict_code) + truncate_value(bit_buf, dict_code))
+                )
                 bit_buf >>= dict_code
                 bit_num -= dict_code
 
@@ -156,7 +217,9 @@ def explode_ttcomp(data: bytes, expected_size: int | None = None) -> bytes:
             out.append(value)
 
     if expected_size is not None and len(out) != expected_size:
-        raise TTCompError(f"Size mismatch after decompression: expected {expected_size}, got {len(out)}")
+        raise TTCompError(
+            f"Size mismatch after decompression: expected {expected_size}, got {len(out)}"
+        )
     return bytes(out)
 
 
@@ -251,10 +314,14 @@ def multipart_group(path: Path) -> list[Path] | None:
 def parse_pe_sections(data: bytes) -> tuple[int, list[dict]]:
     pe_offset = int.from_bytes(data[0x3C:0x40], "little")
     num_sections = int.from_bytes(data[pe_offset + 6 : pe_offset + 8], "little")
-    optional_header_size = int.from_bytes(data[pe_offset + 20 : pe_offset + 22], "little")
+    optional_header_size = int.from_bytes(
+        data[pe_offset + 20 : pe_offset + 22], "little"
+    )
     magic = int.from_bytes(data[pe_offset + 24 : pe_offset + 26], "little")
     data_dir_offset = pe_offset + 24 + (96 if magic == 0x10B else 112)
-    resource_rva = int.from_bytes(data[data_dir_offset + 16 : data_dir_offset + 20], "little")
+    resource_rva = int.from_bytes(
+        data[data_dir_offset + 16 : data_dir_offset + 20], "little"
+    )
     section_offset = pe_offset + 24 + optional_header_size
     sections = []
     for i in range(num_sections):
@@ -302,14 +369,18 @@ def list_file_resources(installer_path: Path) -> list[dict]:
     def read_u32(offset: int) -> int:
         return int.from_bytes(data[offset : offset + 4], "little")
 
-    def walk_directory(rel_offset: int, path: tuple[object, ...]) -> list[tuple[tuple[object, ...], dict]]:
+    def walk_directory(
+        rel_offset: int, path: tuple[object, ...]
+    ) -> list[tuple[tuple[object, ...], dict]]:
         directory_offset = resource_base + rel_offset
         num_named = read_u16(directory_offset + 12)
         num_id = read_u16(directory_offset + 14)
         entry_offset = directory_offset + 16
         nodes = []
         for i in range(num_named + num_id):
-            name = read_resource_name(data, resource_base, read_u32(entry_offset + i * 8))
+            name = read_resource_name(
+                data, resource_base, read_u32(entry_offset + i * 8)
+            )
             child = read_u32(entry_offset + i * 8 + 4)
             is_dir = bool(child & 0x80000000)
             child_rel = child & 0x7FFFFFFF
@@ -370,9 +441,13 @@ def extract_file_resources(installer_path: Path, output_root: Path) -> dict:
     data = installer_path.read_bytes()
 
     resources = []
-    for resource in sorted(list_file_resources(installer_path), key=lambda item: item["name"].lower()):
+    for resource in sorted(
+        list_file_resources(installer_path), key=lambda item: item["name"].lower()
+    ):
         raw_path = raw_dir / f"{installer_path.name}_FILE_{resource['name']}"
-        blob = data[resource["file_offset"] : resource["file_offset"] + resource["size"]]
+        blob = data[
+            resource["file_offset"] : resource["file_offset"] + resource["size"]
+        ]
         raw_path.write_bytes(blob)
         clean_name = resource["name"]
         clean_path = clean_dir / clean_name
@@ -406,10 +481,15 @@ def collect_multipart_entries(parts: list[Path]) -> list[dict]:
     for part in parts:
         for entry in parse_entries(part, require_local_data=False):
             entries_by_name.setdefault(entry["name"], entry)
-    return sorted(entries_by_name.values(), key=lambda item: (item["data_offset"], item["name"].lower()))
+    return sorted(
+        entries_by_name.values(),
+        key=lambda item: (item["data_offset"], item["name"].lower()),
+    )
 
 
-def read_member_blob_from_part(parts_data: list[bytes], entry: dict, start_part: int) -> bytes:
+def read_member_blob_from_part(
+    parts_data: list[bytes], entry: dict, start_part: int
+) -> bytes:
     remaining = entry["compressed_size"]
     current_offset = entry["data_offset"]
     chunks: list[bytes] = []
@@ -432,10 +512,14 @@ def read_member_blob_from_part(parts_data: list[bytes], entry: dict, start_part:
     return blob
 
 
-def resolve_multipart_member(parts_data: list[bytes], entry: dict) -> tuple[bytes, bytes]:
+def resolve_multipart_member(
+    parts_data: list[bytes], entry: dict
+) -> tuple[bytes, bytes]:
     candidates = []
     for index, data in enumerate(parts_data):
-        if entry["data_offset"] < len(data) and is_ttcomp_header(data[entry["data_offset"] : entry["data_offset"] + 2]):
+        if entry["data_offset"] < len(data) and is_ttcomp_header(
+            data[entry["data_offset"] : entry["data_offset"] + 2]
+        ):
             candidates.append(index)
 
     if not candidates:
@@ -450,7 +534,9 @@ def resolve_multipart_member(parts_data: list[bytes], entry: dict) -> tuple[byte
         except Exception as exc:
             last_error = exc
 
-    raise TTCompError(f"Could not decode {entry['name']} from multipart archive: {last_error}")
+    raise TTCompError(
+        f"Could not decode {entry['name']} from multipart archive: {last_error}"
+    )
 
 
 def extract_input(
@@ -531,8 +617,16 @@ def extract_archive_set(
     primary_path = archive_paths[0]
     multipart = len(archive_paths) > 1
     parts_data = [path.read_bytes() for path in archive_paths]
-    entries = collect_multipart_entries(archive_paths) if multipart else parse_entries(primary_path)
-    archive_out = output_root / primary_path.stem if multipart else output_root / primary_path.name
+    entries = (
+        collect_multipart_entries(archive_paths)
+        if multipart
+        else parse_entries(primary_path)
+    )
+    archive_out = (
+        output_root / primary_path.stem
+        if multipart
+        else output_root / primary_path.name
+    )
     archive_out.mkdir(parents=True, exist_ok=True)
 
     extracted = []
@@ -540,8 +634,12 @@ def extract_archive_set(
         if multipart:
             compressed_blob, output_bytes = resolve_multipart_member(parts_data, entry)
         else:
-            compressed_blob = parts_data[0][entry["data_offset"] : entry["data_offset"] + entry["compressed_size"]]
-            output_bytes = explode_ttcomp(compressed_blob, expected_size=entry["uncompressed_size"])
+            compressed_blob = parts_data[0][
+                entry["data_offset"] : entry["data_offset"] + entry["compressed_size"]
+            ]
+            output_bytes = explode_ttcomp(
+                compressed_blob, expected_size=entry["uncompressed_size"]
+            )
         comp_path = archive_out / f"{entry['name']}.ttcomp"
         out_path = archive_out / entry["name"]
         if keep_ttcomp:
